@@ -14,9 +14,10 @@ class Keypad extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  Button(number: 'Sin'),
-                  Button(number: 'Cos'),
-                  Button(number: 'Tan'),
+                  Button(number: '/'),
+                  Button(number: '*'),
+                  Button(number: '+'),
+                  Button(number: '-'),
                 ],
               ),
             ),
