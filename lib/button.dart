@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:calculator/numerics.dart';
 
 class Button extends StatelessWidget {
-  var number;
+  var number, callback;
 
-  Button({this.number});
+  Button({this.number, this.callback});
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: GestureDetector(
-      onTap: () {},
+      onTap: callback,
       child: Container(
           padding: EdgeInsets.all(15.0),
           margin: EdgeInsets.all(5),

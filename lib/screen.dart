@@ -16,7 +16,7 @@ class Screen extends StatelessWidget {
       child: Text(
         equation,
         style: TextStyle(
-          fontSize: 50,
+          fontSize: 30,
         ),
       ),
     ));
