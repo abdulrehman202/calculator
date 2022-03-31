@@ -30,14 +30,21 @@ class _CalculatorState extends State<Calculator> {
                 height: 50,
               ),
               Align(
-                alignment: AlignmentDirectional.bottomEnd,
-                child: IconButton(
-                    icon: Icon(Icons.backspace),
-                    onPressed: () {
-                      int num = int.parse(this.equationTxt);
+                alignment: AlignmentDirectional.centerEnd,
+                child: GestureDetector(
+                    child: Icon(Icons.backspace),
+                    onLongPress: () {
                       setState(() {
                         this.equationTxt = '';
-                        this.equationTxt = ((num / 10).toInt()).toString();
+                      });
+                    },
+                    onTap: () {
+                      int num = int.parse(this.equationTxt);
+                      int newNum = num ~/ 10;
+                      setState(() {
+                        newNum > 0
+                            ? this.equationTxt = (newNum).toString()
+                            : this.equationTxt = '';
                       });
                     }),
               ),
@@ -78,34 +85,102 @@ class _CalculatorState extends State<Calculator> {
                                 });
                               },
                             ),
-                            Button(number: '3'),
+                            Button(
+                              number: '3',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '3';
+                                });
+                              },
+                            ),
                           ],
                         ),
                       ),
                       Expanded(
                         child: Row(
                           children: [
-                            Button(number: '4'),
-                            Button(number: '5'),
-                            Button(number: '6'),
+                            Button(
+                              number: '4',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '4';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '5',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '5';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '6',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '6';
+                                });
+                              },
+                            ),
                           ],
                         ),
                       ),
                       Expanded(
                         child: Row(
                           children: [
-                            Button(number: '7'),
-                            Button(number: '8'),
-                            Button(number: '9'),
+                            Button(
+                              number: '7',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '7';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '8',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '8';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '9',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '9';
+                                });
+                              },
+                            ),
                           ],
                         ),
                       ),
                       Expanded(
                         child: Row(
                           children: [
-                            Button(number: '0'),
-                            Button(number: '.'),
-                            Button(number: '='),
+                            Button(
+                              number: '0',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '0';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '.',
+                              callback: () {
+                                setState(() {
+                                  this.equationTxt += '.';
+                                });
+                              },
+                            ),
+                            Button(
+                              number: '=',
+                              callback: () {
+                                setState(() {});
+                              },
+                            ),
                           ],
                         ),
                       ),
