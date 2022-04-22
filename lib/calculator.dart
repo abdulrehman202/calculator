@@ -1,8 +1,8 @@
-import 'package:calculator/keypad.dart';
+import 'dart:developer';
+
 import 'package:calculator/screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:calculator/numerics.dart';
 
 import 'button.dart';
 
@@ -15,6 +15,10 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
   String equationTxt = '';
+  int num1;
+  var op;
+  int num2;
+
   @override
   Widget build(BuildContext context) {
     // equationTxt = '';
@@ -58,10 +62,30 @@ class _CalculatorState extends State<Calculator> {
                       Expanded(
                         child: Row(
                           children: [
-                            Button(number: '/'),
-                            Button(number: '*'),
-                            Button(number: '+'),
-                            Button(number: '-'),
+                            Button(
+                              number: '/',
+                              callback: () {
+                                setNum1('/');
+                              },
+                            ),
+                            Button(
+                              number: '*',
+                              callback: () {
+                                setNum1('*');
+                              },
+                            ),
+                            Button(
+                              number: '+',
+                              callback: () {
+                                setNum1('+');
+                              },
+                            ),
+                            Button(
+                              number: '-',
+                              callback: () {
+                                setNum1('-');
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -176,9 +200,7 @@ class _CalculatorState extends State<Calculator> {
                             ),
                             Button(
                               number: '=',
-                              callback: () {
-                                setState(() {});
-                              },
+                              callback: evaluateExpression,
                             ),
                           ],
                         ),
@@ -193,5 +215,39 @@ class _CalculatorState extends State<Calculator> {
         ),
       ),
     );
+  }
+
+  setNum1(var oprtr) {
+    if (this.equationTxt != '') {
+      setState(() {
+        this.num1 = int.parse(this.equationTxt);
+        this.equationTxt = '';
+        this.op = oprtr;
+      });
+    }
+  }
+
+  evaluateExpression() {
+    setState(() {
+      this.num2 = int.parse(this.equationTxt);
+
+      switch (this.op) {
+        case '+':
+          this.equationTxt = (this.num1 + this.num2).toString();
+          break;
+
+        case '-':
+          this.equationTxt = (this.num1 - this.num2).toString();
+          break;
+
+        case '*':
+          this.equationTxt = (this.num1 * this.num2).toString();
+          break;
+
+        case '/':
+          this.equationTxt = (this.num1 / this.num2).toString();
+          break;
+      }
+    });
   }
 }
