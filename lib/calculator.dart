@@ -29,7 +29,8 @@ class _CalculatorState extends State<Calculator> {
               SizedBox(
                 height: 50,
               ),
-              Align(
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 35),
                 alignment: AlignmentDirectional.centerEnd,
                 child: GestureDetector(
                     child: Icon(Icons.backspace),
@@ -39,12 +40,10 @@ class _CalculatorState extends State<Calculator> {
                       });
                     },
                     onTap: () {
-                      int num = int.parse(this.equationTxt);
-                      int newNum = num ~/ 10;
                       setState(() {
-                        newNum > 0
-                            ? this.equationTxt = (newNum).toString()
-                            : this.equationTxt = '';
+                        this.equationTxt = this
+                            .equationTxt
+                            .substring(0, this.equationTxt.length - 1);
                       });
                     }),
               ),
